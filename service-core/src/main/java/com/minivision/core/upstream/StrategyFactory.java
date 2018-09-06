@@ -75,6 +75,7 @@ public class StrategyFactory {
 //        Map<String, String> nodes = redisTemplate.hgetAll(redisKey);
         Map<Integer, String> nodes = new HashMap<>();
         nodes.put(0, "com.minivision.upstream.cma.GetWeatherByCityId");
+        nodes.put(1, "com.minivision.upstream.cma.GetWeatherByCityIdV1");
         return new TupleChain(nodes);
     }
 }

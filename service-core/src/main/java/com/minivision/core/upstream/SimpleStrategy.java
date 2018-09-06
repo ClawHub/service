@@ -1,5 +1,6 @@
 package com.minivision.core.upstream;
 
+import com.alibaba.fastjson.JSONObject;
 import com.minivision.api.Tuple;
 import com.minivision.api.UpstreamConfig;
 import com.minivision.api.UpstreamResponse;
@@ -57,8 +58,7 @@ public class SimpleStrategy implements Strategy {
      * @return 配置
      */
     private UpstreamConfig getUpstreamConfigByTuple(Tuple tuple) {
-        return null;
-//        return JSONObject.parseObject(redisTemplate.get(tuple.getClass().getName()), UpstreamConfig.class);
+        return JSONObject.parseObject(redisTemplate.get(tuple.getClass().getName()), UpstreamConfig.class);
     }
 
 }

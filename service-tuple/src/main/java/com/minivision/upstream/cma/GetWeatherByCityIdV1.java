@@ -7,19 +7,19 @@ import com.minivision.core.http.HttpGenerator;
 import com.minivision.core.http.HttpResInfo;
 
 /**
- * <Description> 实时天气1<br>
- * http://www.weather.com.cn/data/sk/101190408.html
+ * <Description> 实时天气2<br>
+ * http://www.weather.com.cn/data/cityinfo/101190408.html
  *
  * @author LiZhiming<br>
  * @version 1.0<br>
  * @taskId <br>
- * @CreateDate 2018/8/29 <br>
+ * @CreateDate 2018/9/6 <br>
  */
-public class GetWeatherByCityId implements Tuple {
+public class GetWeatherByCityIdV1 implements Tuple {
 
     @Override
     public UpstreamResponse call(String cityId, UpstreamConfig upstreamConfig) {
-        String url = new StringBuilder("http://www.weather.com.cn/data/sk/")
+        String url = new StringBuilder("http://www.weather.com.cn/data/cityinfo/")
                 .append(cityId)
                 .append(".html")
                 .toString();

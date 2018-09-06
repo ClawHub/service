@@ -3,6 +3,7 @@ package com.minivision.gateway.controller.weather;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.minivision.gateway.base.BaseController;
 import com.minivision.weather.WeatherFacade;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,9 +26,8 @@ public class WeatherController extends BaseController {
     private WeatherFacade weatherFacade;
 
 
-    @RequestMapping("/getWeatherByCityId")
-    public String getWeatherByCityId() {
-
-        return weatherFacade.getWeatherByCityId("101190408");
+    @RequestMapping(value = "/getWeatherByCityId/{cityId}")
+    public String getWeatherByCityId(@PathVariable("cityId") String cityId) {
+        return weatherFacade.getWeatherByCityId(cityId);
     }
 }
