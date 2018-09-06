@@ -9,24 +9,19 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service-gateway</artifactId>
+    <artifactId>service-tuple</artifactId>
+
     <dependencies>
+        <!--服务接口-->
+        <dependency>
+            <groupId>com.monivision</groupId>
+            <artifactId>service-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!--基础服务包-->
         <dependency>
             <groupId>com.monivision</groupId>
             <artifactId>service-core</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <!--快递服务接口-->
-        <dependency>
-            <groupId>com.monivision</groupId>
-            <artifactId>service-express-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <!--天气服务接口-->
-        <dependency>
-            <groupId>com.monivision</groupId>
-            <artifactId>service-weather-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

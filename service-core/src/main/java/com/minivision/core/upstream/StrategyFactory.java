@@ -1,5 +1,13 @@
 package com.minivision.core.upstream;
 
+import com.minivision.core.redis.core.RedisTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <Description> 策略工厂抽象<br>
  *
@@ -8,14 +16,40 @@ package com.minivision.core.upstream;
  * @taskId <br>
  * @CreateDate 2018/8/29 <br>
  */
+@Component
 public class StrategyFactory {
-    //根据服务名获取策略
+
+    /**
+     * The Redis template.
+     */
+    @Autowired
+    private RedisTemplate redisTemplateAuto;
+
+    /**
+     * The constant redisTemplate.
+     */
+    private static RedisTemplate redisTemplate;
+
+    /**
+     * Init.
+     */
+    @PostConstruct
+    public void init() {
+        redisTemplate = redisTemplateAuto;
+    }
+
+    /**
+     * 根据服务名获取策略
+     *
+     * @param serviceName the service name
+     * @return the strategy
+     */
     public static Strategy getStrategy(String serviceName) {
         //根据服务名获取策略ID
         String strategyId = getStrategyIdByServiceName(serviceName);
         //获取上游调用链
         TupleChain tupleChain = getTupleChain(strategyId);
-        return new SimpleStrategy(tupleChain);
+        return new SimpleStrategy(tupleChain, redisTemplate);
     }
 
     /**
@@ -25,9 +59,8 @@ public class StrategyFactory {
      * @return 策略ID
      */
     private static String getStrategyIdByServiceName(String serviceName) {
-        //根据服务名获取策略id
-        //redis获取
-        return "";
+        String redisKey = "service:strategy-id:" + serviceName;
+        return redisTemplate.get(redisKey);
     }
 
     /**
@@ -37,6 +70,11 @@ public class StrategyFactory {
      * @return 上游调用链
      */
     private static TupleChain getTupleChain(String strategyId) {
-        return null;
+        String redisKey = "service:tuple-chain:" + strategyId;
+        //key:权重 0最优先，val：上游className
+//        Map<String, String> nodes = redisTemplate.hgetAll(redisKey);
+        Map<Integer, String> nodes = new HashMap<>();
+        nodes.put(0, "com.minivision.upstream.cma.GetWeatherByCityId");
+        return new TupleChain(nodes);
     }
 }

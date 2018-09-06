@@ -28,6 +28,6 @@ public class WeatherController extends BaseController {
     @RequestMapping("/getWeatherByCityId")
     public String getWeatherByCityId() {
 
-        return weatherFacade.getWeatherByCityId("");
+        return weatherFacade.getWeatherByCityId("101190408");
     }
 }

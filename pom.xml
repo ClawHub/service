@@ -10,17 +10,13 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>service-weather</module>
-        <module>service-auth</module>
-        <module>service-charge</module>
-        <module>service-rawdata</module>
         <module>service-core</module>
         <module>service-express</module>
-        <module>service-auth-api</module>
-        <module>service-charge-api</module>
         <module>service-gateway</module>
         <module>service-weather-api</module>
         <module>service-express-api</module>
-        <module>service-upstream</module>
+        <module>service-tuple</module>
+        <module>service-api</module>
     </modules>
 
     <properties>
