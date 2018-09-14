@@ -1,8 +1,8 @@
 package com.minivision.upstream.cma;
 
 import com.minivision.api.Tuple;
-import com.minivision.api.UpstreamConfig;
-import com.minivision.api.UpstreamResponse;
+import com.minivision.api.TupleConfig;
+import com.minivision.api.TupleResponse;
 import com.minivision.core.http.HttpGenerator;
 import com.minivision.core.http.HttpResInfo;
 
@@ -18,14 +18,11 @@ import com.minivision.core.http.HttpResInfo;
 public class GetWeatherByCityId implements Tuple {
 
     @Override
-    public UpstreamResponse call(String cityId, UpstreamConfig upstreamConfig) {
-        String url = new StringBuilder("http://www.weather.com.cn/data/sk/")
-                .append(cityId)
-                .append(".html")
-                .toString();
+    public TupleResponse call(String cityId, TupleConfig tupleConfig) {
+        String url = "http://www.weather.com.cn/data/sk/" + cityId + ".html";
         HttpResInfo httpResInfo = HttpGenerator.sendGet(url, 6000, 6000, null, false);
 
-        return new UpstreamResponse(httpResInfo.getSuccess(), httpResInfo.getResult());
+        return new TupleResponse(httpResInfo.getSuccess(), httpResInfo.getResult());
     }
 
 

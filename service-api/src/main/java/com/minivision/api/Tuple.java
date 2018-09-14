@@ -13,9 +13,9 @@ public interface Tuple {
      * 调用上游
      *
      * @param param          调用参数
-     * @param upstreamConfig 配置
+     * @param tupleConfig 配置
      * @return 结果封装
      */
-    UpstreamResponse call(String param, UpstreamConfig upstreamConfig);
+    TupleResponse call(String param, TupleConfig tupleConfig);
 
 }

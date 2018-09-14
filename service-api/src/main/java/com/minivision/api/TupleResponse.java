@@ -8,11 +8,11 @@ package com.minivision.api;
  * @taskId <br>
  * @CreateDate 2018/8/29 <br>
  */
-public class UpstreamResponse {
+public class TupleResponse {
     private boolean success;
     private String result;
 
-    public UpstreamResponse(boolean success, String result) {
+    public TupleResponse(boolean success, String result) {
         this.success = success;
         this.result = result;
     }

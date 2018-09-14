@@ -2,8 +2,8 @@ package com.minivision.core.upstream;
 
 import com.alibaba.fastjson.JSONObject;
 import com.minivision.api.Tuple;
-import com.minivision.api.UpstreamConfig;
-import com.minivision.api.UpstreamResponse;
+import com.minivision.api.TupleConfig;
+import com.minivision.api.TupleResponse;
 import com.minivision.core.redis.core.RedisTemplate;
 
 /**
@@ -41,11 +41,11 @@ public class SimpleStrategy implements Strategy {
         //调用上游
         while (tupleChain.hasNext()) {
             Tuple tuple = tupleChain.getNext();
-            UpstreamConfig upstreamConfig = getUpstreamConfigByTuple(tuple);
+            TupleConfig tupleConfig = getUpstreamConfigByTuple(tuple);
             //执行调用
-            UpstreamResponse upstreamResponse = tuple.call(param, upstreamConfig);
-            if (upstreamResponse.isSuccess()) {
-                return upstreamResponse.getResult();
+            TupleResponse tupleResponse = tuple.call(param, tupleConfig);
+            if (tupleResponse.isSuccess()) {
+                return tupleResponse.getResult();
             }
         }
         return null;
@@ -57,8 +57,8 @@ public class SimpleStrategy implements Strategy {
      * @param tuple 上游调用单元
      * @return 配置
      */
-    private UpstreamConfig getUpstreamConfigByTuple(Tuple tuple) {
-        return JSONObject.parseObject(redisTemplate.get(tuple.getClass().getName()), UpstreamConfig.class);
+    private TupleConfig getUpstreamConfigByTuple(Tuple tuple) {
+        return JSONObject.parseObject(redisTemplate.get(tuple.getClass().getName()), TupleConfig.class);
     }
 
 }

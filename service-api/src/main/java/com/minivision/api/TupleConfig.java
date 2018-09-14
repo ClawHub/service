@@ -8,5 +8,5 @@ package com.minivision.api;
  * @taskId <br>
  * @CreateDate 2018/8/29 <br>
  */
-public class UpstreamConfig {
+public class TupleConfig {
 }

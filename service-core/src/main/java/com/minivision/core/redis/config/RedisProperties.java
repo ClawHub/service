@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @CreateDate 2018 -09-06 <br>
  */
 @Component
-@ConfigurationProperties(prefix = "redis.cache")
+@ConfigurationProperties(prefix = "redis.cache", ignoreUnknownFields = true)
 public class RedisProperties {
     /**
      * The Pool config.
